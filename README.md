@@ -1,6 +1,10 @@
 # GSOC Jenkins Web UI Project
 
 #### Here is my current progress
+**May 25** - During this 5 days I was working on New Job Name validation and New Job Popup
+* New Job Name validation was made after the [changes of recena](https://github.com/jenkinsci/jenkins/pull/2324/files). There were implemented all of the changes I proposed except real time check on name validity. [Here I proposed the change](https://github.com/jenkinsci/jenkins/compare/master...samatdav:master#diff-e146d4fdbfe6385a456aea9775f6282d) which fixes it by sending GET request on keyup event in addition to blur. However that should remove focus of the submit function in enableSubmit function. That may not be the best way since the focus may be useful. I may later separate blur and keyup events to handle it. However, now I think it is more important to work on Popup task since I have limited time.
+* New Job Popup. [On this GIF you can see my current results.](https://raw.githubusercontent.com/samatdav/test1/master/example/out_2_ogv.gif) I used a [Remodal](https://github.com/VodkaBears/Remodal) library for popup and put there [existing New Job container](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/hudson/model/View/newJob.jelly). I was glad and surprised that it is fully functional right away. On the GIF you can see that popup receives all job types and then successfully submits the post form creating a new job. I think that could be a good first step. Further I can start changing the window itself.
+
 
 **May 20** - At this point I talked with several mentors and discussed possible approaches to my projects. I installed Jenkins on my Ubuntu machine and now can make changes and run them by *mvn jenkins-dev:run*. 
 With mentors we mostly discussed new job creation project and in particular popup window. That should require 3 steps: rendering popup, receiving JSON with job types, and sending POST request to create the job. I found [newJob.jelly](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/hudson/model/View/newJob.jelly) file which should be the starting point in doing the popup.
